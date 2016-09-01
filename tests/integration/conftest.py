@@ -20,7 +20,7 @@ def cleanup_tables(request, node_config):
     conftest.cleanup_tables(request, node_config)
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def processes(b):
     b.create_genesis_block()
     block_maker = block.start()
