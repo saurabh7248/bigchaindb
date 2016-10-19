@@ -1,5 +1,5 @@
 import pytest
-from bigchaindb.pipelines import block, election, vote
+from bigchaindb.pipelines import block, election, vote, stale
 
 from ..db import conftest
 
@@ -26,7 +26,9 @@ def processes(b):
     block_maker = block.start()
     voter = vote.start()
     election_runner = election.start()
+    stale_monitor = stale.start()
     yield
     block_maker.terminate()
     voter.terminate()
     election_runner.terminate()
+    stale_monitor.terminate()
