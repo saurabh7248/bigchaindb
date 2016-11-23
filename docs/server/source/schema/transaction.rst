@@ -6,8 +6,6 @@ Transaction Schema
 
 * `Transaction`_
 
-* `Transaction Body`_
-
 * Condition_
 
 * Fulfillment_
@@ -37,7 +35,7 @@ Transaction Schema
 Transaction
 -----------
 
-This is the outer transaction wrapper. It contains the ID, version and the body of the transaction, which is also called ``transaction``.
+TODO - What should go here?
 
 
 Transaction.id
@@ -50,32 +48,6 @@ derived hashes and signatures from the transaction, serializing it to
 JSON with keys in sorted order and then hashing the resulting string
 with sha3.
 
-
-
-Transaction.transaction
-^^^^^^^^^^^^^^^^^^^^^^^
-
-**type:** object
-
-See: `Transaction Body`_.
-
-
-
-Transaction.version
-^^^^^^^^^^^^^^^^^^^
-
-**type:** integer
-
-BigchainDB transaction schema version.
-
-
-
-
-
-Transaction Body
-----------------
-
-See: `Transaction Body`_.
 
 
 Transaction.operation
@@ -139,6 +111,15 @@ User provided transaction metadata. This field may be ``null`` or may
 contain an id and an object with freeform metadata.
 
 See: `Metadata`_.
+
+
+
+Transaction.version
+^^^^^^^^^^^^^^^^^^^
+
+**type:** integer
+
+BigchainDB transaction schema version.
 
 
 

@@ -1178,7 +1178,7 @@ class Transaction(object):
             # NOTE: An `asset` in a `TRANSFER` only contains the asset's id
             asset = {'id': self.asset.data_id}
 
-        tx_body = {
+        tx = {
             'fulfillments': [fulfillment.to_dict(fid) for fid, fulfillment
                              in enumerate(self.fulfillments)],
             'conditions': [condition.to_dict(cid) for cid, condition
@@ -1186,10 +1186,7 @@ class Transaction(object):
             'operation': str(self.operation),
             'metadata': metadata,
             'asset': asset,
-        }
-        tx = {
             'version': self.version,
-            'transaction': tx_body,
         }
 
         tx_no_signatures = Transaction._remove_signatures(tx)
@@ -1214,7 +1211,7 @@ class Transaction(object):
         # NOTE: We remove the reference since we need `tx_dict` only for the
         #       transaction's hash
         tx_dict = deepcopy(tx_dict)
-        for fulfillment in tx_dict['transaction']['fulfillments']:
+        for fulfillment in tx_dict['fulfillments']:
             # NOTE: Not all Cryptoconditions return a `signature` key (e.g.
             #       ThresholdSha256Fulfillment), so setting it to `None` in any
             #       case could yield incorrect signatures. This is why we only
@@ -1264,7 +1261,7 @@ class Transaction(object):
             raise InvalidHash()
 
     @classmethod
-    def from_dict(cls, tx_body):
+    def from_dict(cls, tx):
         """Transforms a Python dictionary to a Transaction object.
 
             Args:
@@ -1273,8 +1270,7 @@ class Transaction(object):
             Returns:
                 :class:`~bigchaindb.common.transaction.Transaction`
         """
-        cls.validate_structure(tx_body)
-        tx = tx_body['transaction']
+        cls.validate_structure(tx)
         fulfillments = [Fulfillment.from_dict(fulfillment) for fulfillment
                         in tx['fulfillments']]
         conditions = [Condition.from_dict(condition) for condition
@@ -1286,4 +1282,4 @@ class Transaction(object):
             asset = AssetLink.from_dict(tx['asset'])
 
         return cls(tx['operation'], asset, fulfillments, conditions,
-                   metadata, tx_body['version'])
+                   metadata, tx['version'])
