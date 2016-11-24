@@ -16,23 +16,6 @@ Transaction Schema
 
 * Metadata_
 
-.. raw:: html
-
-    <style>
-    #transaction-schema h2 {
-         border-top: solid 3px #6ab0de;
-         background-color: #e7f2fa;
-         padding: 5px;
-    }
-    #transaction-schema h3 {
-         background: #f0f0f0;
-         border-left: solid 3px #ccc;
-         font-weight: bold;
-         padding: 6px;
-         font-size: 100%;
-         font-family: monospace;
-    }
-    </style>
 
 Transaction
 -----------
@@ -324,3 +307,21 @@ User provided transaction metadata.
 
 
 
+
+.. raw:: html
+
+    <style>
+    #transaction-schema h2 {
+         border-top: solid 3px #6ab0de;
+         background-color: #e7f2fa;
+         padding: 5px;
+    }
+    #transaction-schema h3 {
+         background: #f0f0f0;
+         border-left: solid 3px #ccc;
+         font-weight: bold;
+         padding: 6px;
+         font-size: 100%;
+         font-family: monospace;
+    }
+    </style>
